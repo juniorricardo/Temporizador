@@ -1,0 +1,15 @@
+C:\Users\Cina\source\repos\Temporizador\Tempo\bin\Debug\Tempo.exe.config
+C:\Users\Cina\source\repos\Temporizador\Tempo\bin\Debug\Tempo.exe
+C:\Users\Cina\source\repos\Temporizador\Tempo\bin\Debug\Tempo.pdb
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.csprojAssemblyReference.cache
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.frmTemporizador.resources
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.Properties.Resources.resources
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.csproj.GenerateResource.cache
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.csproj.CoreCompileInputs.cache
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.exe
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.pdb
+C:\Users\Cina\source\repos\Temporizador\Tempo\bin\Debug\Tempo.exe.manifest
+C:\Users\Cina\source\repos\Temporizador\Tempo\bin\Debug\Tempo.application
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.TrustInfo.xml
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.exe.manifest
+C:\Users\Cina\source\repos\Temporizador\Tempo\obj\Debug\Tempo.application
