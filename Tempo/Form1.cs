@@ -15,6 +15,12 @@ namespace Tempo
         int min;
         int seg;
         int opcionElegida;
+
+        //Move windows
+        bool dragging = false;
+        int xOffset = 0;
+        int yOffset = 0;
+
         public frmTemporizador()
         {
             InitializeComponent();
@@ -32,6 +38,8 @@ namespace Tempo
             timer1.Start();
             btnIniciar.ForeColor = Color.Firebrick;
             btnPausar.Enabled = true;
+            cbxMinutos.Enabled = false;
+            cbxSegundos.Enabled = false;
             min = enMinutos;
             seg = enSegundos;
             btnIniciar.Text = "Restablecer";
@@ -45,10 +53,28 @@ namespace Tempo
             btnIniciar.ForeColor = Color.ForestGreen;
             btnPausar.Enabled = false;
             btnPausar.ForeColor = Color.RoyalBlue;
+            cbxMinutos.Enabled = true;
+            cbxSegundos.Enabled = true;
             cbxSegundos.SelectedIndex = 0;
             cbxMinutos.SelectedIndex = 0;
             btnPausar.Text = "Pausar";
             btnIniciar.Text = "Iniciar";
+        }
+        private void metodoFinConteo()
+        {
+            timer1.Stop();
+            if (MessageBox.Show("Se ha terminado el tiempo.", "Temporizador", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            {
+                cbxSegundos.SelectedIndex = 0;
+                cbxMinutos.SelectedIndex = 0;
+                lblTiempo.Text = "00:00";
+                cbxMinutos.Enabled = true;
+                cbxSegundos.Enabled = true;
+                btnPausar.Enabled = false;
+                btnPausar.ForeColor = Color.RoyalBlue;
+                btnPausar.Text = "Pausar";
+                btnIniciar.Text = "Iniciar";
+            }
         }
 
         #endregion
@@ -60,9 +86,11 @@ namespace Tempo
 
         private void FrmTemporizador_Load(object sender, EventArgs e)
         {
+            //this.Location = Screen.AllScreens[1].WorkingArea.Location;
             for (int i = 0; i < 60; i++)
             {
-                cbxMinutos.Items.Add(i);
+                if (i <= 45)
+                    cbxMinutos.Items.Add(i);
                 cbxSegundos.Items.Add(i);
             }
             cbxSegundos.SelectedIndex = 0;
@@ -74,18 +102,26 @@ namespace Tempo
             if (pnlCustom.Visible == true)
             {
                 if (btnIniciar.Text == "Iniciar")
-                    metodoIniciarRestablecer(cbxMinutos.SelectedIndex, cbxSegundos.SelectedIndex);
-
+                {
+                    if (cbxMinutos.SelectedIndex == 0)  //0x
+                    {
+                        if (cbxSegundos.SelectedIndex >= 1) //0x --> x >= 1  
+                            metodoIniciarRestablecer(0, cbxSegundos.SelectedIndex);
+                        else                                //00
+                            metodoFinConteo();
+                    }
+                    else if (cbxSegundos.SelectedIndex >= 1)    //1x --> x >= 1
+                        metodoIniciarRestablecer(cbxMinutos.SelectedIndex, cbxSegundos.SelectedIndex);
+                    else                                        //1x
+                        metodoIniciarRestablecer(cbxMinutos.SelectedIndex - 1, 60);
+                }
                 else
                     metodoPausaIniciar();
             }
-            else if (pnlAtajos.Visible == true)
-            {
-                if (btnIniciar.Text == "Iniciar")
-                    metodoIniciarRestablecer(opcionElegida - 1, 60);
-                else
-                    metodoPausaIniciar();
-            }
+            else if (pnlAtajos.Visible == true && btnIniciar.Text == "Iniciar")
+                metodoIniciarRestablecer(opcionElegida - 1, 60);
+            else
+                metodoPausaIniciar();
         }
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
@@ -117,19 +153,9 @@ namespace Tempo
                 min -= 1;
                 seg = 60;
             }
-            if (min == 0 && seg <= 0)
+            if (min <= 0 && seg <= 0)
             {
-                timer1.Stop();
-                if (MessageBox.Show("Se ha terminado el tiempo.", "Temporizador", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
-                {
-                    cbxSegundos.SelectedIndex = 0;
-                    cbxMinutos.SelectedIndex = 0;
-                    lblTiempo.Text = "00:00";
-                    btnPausar.Enabled = false;
-                    btnPausar.ForeColor = Color.RoyalBlue;
-                    btnPausar.Text = "Pausar";
-                    btnIniciar.Text = "Iniciar";
-                }
+                metodoFinConteo();
             }
             else
             {
@@ -176,7 +202,60 @@ namespace Tempo
         {
             opcionElegida = 10;
         }
+
+        private void RbtnDoce_CheckedChanged(object sender, EventArgs e)
+        {
+            opcionElegida = 12;
+        }
         #endregion
 
+
+        private void metodoMouseDown()
+        {
+            dragging = true;
+
+            xOffset = Cursor.Position.X - this.Location.X;
+            yOffset = Cursor.Position.Y - this.Location.Y;
+        }
+        private void metodoMouseMove()
+        {
+            if (dragging)
+            {
+                this.Location = new Point(Cursor.Position.X - xOffset, Cursor.Position.Y - yOffset);
+                this.Update();
+            }
+        }
+
+        #region Move Window
+        private void PnlTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            metodoMouseDown();
+        }
+
+        private void PnlTitulo_MouseMove(object sender, MouseEventArgs e)
+        {
+            metodoMouseMove();
+        }
+
+        private void PnlTitulo_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void LblTemporizador_MouseDown(object sender, MouseEventArgs e)
+        {
+            metodoMouseDown();
+        }
+
+        private void LblTemporizador_MouseMove(object sender, MouseEventArgs e)
+        {
+            metodoMouseMove();
+        }
+
+        private void LblTemporizador_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+        #endregion
     }
 }

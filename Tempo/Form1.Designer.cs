@@ -47,6 +47,7 @@
             this.pnlTiempo = new System.Windows.Forms.Panel();
             this.lblTiempo = new System.Windows.Forms.Label();
             this.pnlAtajos = new System.Windows.Forms.Panel();
+            this.rbtnDoce = new System.Windows.Forms.RadioButton();
             this.rbtnDiez = new System.Windows.Forms.RadioButton();
             this.rbtnOcho = new System.Windows.Forms.RadioButton();
             this.rbtnTres = new System.Windows.Forms.RadioButton();
@@ -69,6 +70,9 @@
             this.pnlTitulo.Name = "pnlTitulo";
             this.pnlTitulo.Size = new System.Drawing.Size(220, 67);
             this.pnlTitulo.TabIndex = 0;
+            this.pnlTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitulo_MouseDown);
+            this.pnlTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlTitulo_MouseMove);
+            this.pnlTitulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlTitulo_MouseUp);
             // 
             // lblAutor
             // 
@@ -94,6 +98,9 @@
             this.lblTemporizador.TabIndex = 0;
             this.lblTemporizador.Text = "Temporizador";
             this.lblTemporizador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTemporizador.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LblTemporizador_MouseDown);
+            this.lblTemporizador.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LblTemporizador_MouseMove);
+            this.lblTemporizador.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LblTemporizador_MouseUp);
             // 
             // timer1
             // 
@@ -107,7 +114,7 @@
             this.pnlComando.Controls.Add(this.btnPausar);
             this.pnlComando.Controls.Add(this.btnIniciar);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlComando.Location = new System.Drawing.Point(0, 238);
+            this.pnlComando.Location = new System.Drawing.Point(0, 240);
             this.pnlComando.Name = "pnlComando";
             this.pnlComando.Size = new System.Drawing.Size(220, 122);
             this.pnlComando.TabIndex = 4;
@@ -214,9 +221,13 @@
             // 
             // cbxSegundos
             // 
+            this.cbxSegundos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxSegundos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxSegundos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbxSegundos.Font = new System.Drawing.Font("Panton", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSegundos.FormattingEnabled = true;
+            this.cbxSegundos.IntegralHeight = false;
+            this.cbxSegundos.ItemHeight = 19;
             this.cbxSegundos.Location = new System.Drawing.Point(127, 45);
             this.cbxSegundos.Name = "cbxSegundos";
             this.cbxSegundos.Size = new System.Drawing.Size(69, 27);
@@ -224,9 +235,13 @@
             // 
             // cbxMinutos
             // 
+            this.cbxMinutos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxMinutos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxMinutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbxMinutos.Font = new System.Drawing.Font("Panton", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxMinutos.FormattingEnabled = true;
+            this.cbxMinutos.IntegralHeight = false;
+            this.cbxMinutos.ItemHeight = 19;
             this.cbxMinutos.Location = new System.Drawing.Point(127, 8);
             this.cbxMinutos.Name = "cbxMinutos";
             this.cbxMinutos.Size = new System.Drawing.Size(69, 27);
@@ -237,7 +252,7 @@
             this.pnlTiempo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(102)))));
             this.pnlTiempo.Controls.Add(this.lblTiempo);
             this.pnlTiempo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTiempo.Location = new System.Drawing.Point(0, 191);
+            this.pnlTiempo.Location = new System.Drawing.Point(0, 193);
             this.pnlTiempo.Name = "pnlTiempo";
             this.pnlTiempo.Size = new System.Drawing.Size(220, 47);
             this.pnlTiempo.TabIndex = 11;
@@ -248,12 +263,13 @@
             this.lblTiempo.ForeColor = System.Drawing.Color.White;
             this.lblTiempo.Location = new System.Drawing.Point(63, 8);
             this.lblTiempo.Name = "lblTiempo";
-            this.lblTiempo.Size = new System.Drawing.Size(95, 32);
+            this.lblTiempo.Size = new System.Drawing.Size(133, 32);
             this.lblTiempo.TabIndex = 4;
             this.lblTiempo.Text = "00:00";
             // 
             // pnlAtajos
             // 
+            this.pnlAtajos.Controls.Add(this.rbtnDoce);
             this.pnlAtajos.Controls.Add(this.rbtnDiez);
             this.pnlAtajos.Controls.Add(this.rbtnOcho);
             this.pnlAtajos.Controls.Add(this.rbtnTres);
@@ -262,15 +278,29 @@
             this.pnlAtajos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAtajos.Location = new System.Drawing.Point(0, 191);
             this.pnlAtajos.Name = "pnlAtajos";
-            this.pnlAtajos.Size = new System.Drawing.Size(220, 0);
+            this.pnlAtajos.Size = new System.Drawing.Size(220, 2);
             this.pnlAtajos.TabIndex = 12;
+            // 
+            // rbtnDoce
+            // 
+            this.rbtnDoce.AutoSize = true;
+            this.rbtnDoce.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbtnDoce.Font = new System.Drawing.Font("Hack", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnDoce.Location = new System.Drawing.Point(104, 58);
+            this.rbtnDoce.Name = "rbtnDoce";
+            this.rbtnDoce.Size = new System.Drawing.Size(87, 23);
+            this.rbtnDoce.TabIndex = 5;
+            this.rbtnDoce.TabStop = true;
+            this.rbtnDoce.Text = "12 min";
+            this.rbtnDoce.UseVisualStyleBackColor = true;
+            this.rbtnDoce.CheckedChanged += new System.EventHandler(this.RbtnDoce_CheckedChanged);
             // 
             // rbtnDiez
             // 
             this.rbtnDiez.AutoSize = true;
             this.rbtnDiez.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnDiez.Font = new System.Drawing.Font("Hack", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnDiez.Location = new System.Drawing.Point(104, 32);
+            this.rbtnDiez.Location = new System.Drawing.Point(104, 31);
             this.rbtnDiez.Name = "rbtnDiez";
             this.rbtnDiez.Size = new System.Drawing.Size(87, 23);
             this.rbtnDiez.TabIndex = 4;
@@ -284,7 +314,7 @@
             this.rbtnOcho.AutoSize = true;
             this.rbtnOcho.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnOcho.Font = new System.Drawing.Font("Hack", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnOcho.Location = new System.Drawing.Point(114, 3);
+            this.rbtnOcho.Location = new System.Drawing.Point(114, 6);
             this.rbtnOcho.Name = "rbtnOcho";
             this.rbtnOcho.Size = new System.Drawing.Size(77, 23);
             this.rbtnOcho.TabIndex = 3;
@@ -337,7 +367,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(239)))));
-            this.ClientSize = new System.Drawing.Size(220, 360);
+            this.ClientSize = new System.Drawing.Size(220, 362);
             this.Controls.Add(this.pnlAtajos);
             this.Controls.Add(this.pnlTiempo);
             this.Controls.Add(this.pnlCustom);
@@ -347,7 +377,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTemporizador";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Temporizador";
             this.Load += new System.EventHandler(this.FrmTemporizador_Load);
             this.pnlTitulo.ResumeLayout(false);
@@ -386,6 +415,7 @@
         private System.Windows.Forms.RadioButton rbtnTres;
         private System.Windows.Forms.RadioButton rbtnDos;
         private System.Windows.Forms.RadioButton rbtnUno;
+        private System.Windows.Forms.RadioButton rbtnDoce;
     }
 }
 
