@@ -60,10 +60,10 @@ namespace Tempo
             btnPausar.Text = "Pausar";
             btnIniciar.Text = "Iniciar";
         }
-        private void metodoFinConteo()
+        private void metodoLimpiarControles(string mensaje)
         {
             timer1.Stop();
-            if (MessageBox.Show("Se ha terminado el tiempo.", "Temporizador", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            if (MessageBox.Show(mensaje, "Temporizador", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
                 cbxSegundos.SelectedIndex = 0;
                 cbxMinutos.SelectedIndex = 0;
@@ -99,29 +99,36 @@ namespace Tempo
 
         private void BtnIniciar_Click(object sender, EventArgs e)
         {
-            if (pnlCustom.Visible == true)
+            int minutoSelect = cbxMinutos.SelectedIndex;
+            int segundoSelect = cbxSegundos.SelectedIndex;
+            if (minutoSelect != -1 && segundoSelect != -1)
             {
-                if (btnIniciar.Text == "Iniciar")
+                if (pnlCustom.Visible == true)
                 {
-                    if (cbxMinutos.SelectedIndex == 0)  //0x
+                    if (btnIniciar.Text == "Iniciar")
                     {
-                        if (cbxSegundos.SelectedIndex >= 1) //0x --> x >= 1  
-                            metodoIniciarRestablecer(0, cbxSegundos.SelectedIndex);
-                        else                                //00
-                            metodoFinConteo();
+                        if (minutoSelect == 0)  //0x
+                        {
+                            if (segundoSelect >= 1) //0x --> x >= 1  
+                                metodoIniciarRestablecer(0, segundoSelect);
+                            else                                //00
+                                metodoLimpiarControles("Tiempo seleccionado invalido.");
+                        }
+                        else if (cbxSegundos.SelectedIndex >= 1)    //1x --> x >= 1
+                            metodoIniciarRestablecer(minutoSelect, segundoSelect);
+                        else                                        //1x
+                            metodoIniciarRestablecer(minutoSelect - 1, 60);
                     }
-                    else if (cbxSegundos.SelectedIndex >= 1)    //1x --> x >= 1
-                        metodoIniciarRestablecer(cbxMinutos.SelectedIndex, cbxSegundos.SelectedIndex);
-                    else                                        //1x
-                        metodoIniciarRestablecer(cbxMinutos.SelectedIndex - 1, 60);
+                    else
+                        metodoPausaIniciar();
                 }
+                else if (pnlAtajos.Visible == true && btnIniciar.Text == "Iniciar")
+                    metodoIniciarRestablecer(opcionElegida - 1, 60);
                 else
                     metodoPausaIniciar();
             }
-            else if (pnlAtajos.Visible == true && btnIniciar.Text == "Iniciar")
-                metodoIniciarRestablecer(opcionElegida - 1, 60);
             else
-                metodoPausaIniciar();
+                metodoLimpiarControles("Valores ingresador fuera del rango, minutos(45) y segungos(59).");
         }
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
@@ -155,7 +162,7 @@ namespace Tempo
             }
             if (min <= 0 && seg <= 0)
             {
-                metodoFinConteo();
+                metodoLimpiarControles("Se ha terminado el tiempo.");
             }
             else
             {

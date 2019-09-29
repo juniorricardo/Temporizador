@@ -1,0 +1,17 @@
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\Tempo.exe.config
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\Tempo.exe.manifest
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\Tempo.application
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\Tempo.exe
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\Tempo.pdb
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\bin\Release\es-419\Tempo.resources.dll
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.frmTemporizador.resources
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.Properties.Resources.resources
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.frmTemporizador.es-419.resources
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.csproj.GenerateResource.cache
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.csproj.CoreCompileInputs.cache
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\es-419\Tempo.resources.dll
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.TrustInfo.xml
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.exe.manifest
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.application
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.exe
+D:\Mitsuha\Source\Repositorio\Temporizador\Tempo\obj\Release\Tempo.pdb
