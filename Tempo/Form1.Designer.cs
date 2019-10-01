@@ -230,7 +230,7 @@
             this.cbxSegundos.ItemHeight = 19;
             this.cbxSegundos.Location = new System.Drawing.Point(127, 45);
             this.cbxSegundos.Name = "cbxSegundos";
-            this.cbxSegundos.Size = new System.Drawing.Size(69, 27);
+            this.cbxSegundos.Size = new System.Drawing.Size(64, 27);
             this.cbxSegundos.TabIndex = 10;
             // 
             // cbxMinutos
@@ -244,7 +244,7 @@
             this.cbxMinutos.ItemHeight = 19;
             this.cbxMinutos.Location = new System.Drawing.Point(127, 8);
             this.cbxMinutos.Name = "cbxMinutos";
-            this.cbxMinutos.Size = new System.Drawing.Size(69, 27);
+            this.cbxMinutos.Size = new System.Drawing.Size(64, 27);
             this.cbxMinutos.TabIndex = 9;
             // 
             // pnlTiempo
