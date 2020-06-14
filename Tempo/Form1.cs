@@ -264,5 +264,15 @@ namespace Tempo
             dragging = false;
         }
         #endregion
+
+        private void pnlTitulo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblTemporizador_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
